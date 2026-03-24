@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OnePlus Nord CE5 vs Turbo 6V</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --red: #FF3D00;
+    --red-dim: #c73000;
+    --dark: #0a0a0a;
+    --card: #111111;
+    --card2: #161616;
+    --line: #242424;
+    --text: #e8e8e8;
+    --muted: #888;
+    --accent: #f5f5f5;
+    --ce5: #4fa3f7;
+    --turbo: #FF3D00;
+    --win: rgba(255,61,0,0.12);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--dark);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    line-height: 1.5;
+    padding: 40px 20px 60px;
+    min-height: 100vh;
+  }
+
+  /* ── Header ── */
+  .header {
+    max-width: 880px;
+    margin: 0 auto 48px;
+    text-align: center;
+    position: relative;
+  }
+  .header .eyebrow {
+    font-family: 'Syne', sans-serif;
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--red);
+    margin-bottom: 14px;
+    display: block;
+  }
+  .header h1 {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(26px, 5vw, 44px);
+    font-weight: 800;
+    line-height: 1.1;
+    letter-spacing: -1px;
+    color: #fff;
+  }
+  .header h1 span.vs {
+    color: var(--red);
+    font-weight: 800;
+    font-size: 0.7em;
+    vertical-align: middle;
+    margin: 0 8px;
+    opacity: 0.9;
+  }
+  .header p.sub {
+    margin-top: 12px;
+    color: var(--muted);
+    font-size: 13px;
+    font-weight: 300;
+  }
+
+  /* ── Phone header row ── */
+  .phones-header {
+    max-width: 880px;
+    margin: 0 auto 6px;
+    display: grid;
+    grid-template-columns: 220px 1fr 1fr;
+    gap: 6px;
+  }
+  .phone-label {
+    border-radius: 12px 12px 0 0;
+    padding: 20px 18px 18px;
+    text-align: center;
+  }
+  .phone-label.ce5 { background: rgba(79,163,247,0.08); border: 1px solid rgba(79,163,247,0.2); border-bottom: none; }
+  .phone-label.turbo { background: rgba(255,61,0,0.08); border: 1px solid rgba(255,61,0,0.2); border-bottom: none; }
+  .phone-label .model-badge {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 20px;
+    font-size: 10px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+  .ce5 .model-badge { background: rgba(79,163,247,0.15); color: var(--ce5); }
+  .turbo .model-badge { background: rgba(255,61,0,0.15); color: var(--turbo); }
+  .phone-label h2 {
+    font-family: 'Syne', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    color: #fff;
+    line-height: 1.3;
+  }
+  .phone-label .price-tag {
+    margin-top: 6px;
+    font-size: 12px;
+    color: var(--muted);
+    font-weight: 300;
+  }
+
+  /* ── Main Table ── */
+  .compare-table {
+    max-width: 880px;
+    margin: 0 auto;
+    border-collapse: separate;
+    border-spacing: 0 0;
+    width: 100%;
+  }
+
+  /* Section header */
+  .section-header td {
+    background: var(--dark);
+    padding: 28px 0 8px 0;
+    font-family: 'Syne', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--red);
+    border-bottom: 1px solid var(--red);
+  }
+  .section-header td:first-child { border-radius: 0; }
+
+  /* Data rows */
+  .data-row td {
+    padding: 13px 16px;
+    border-bottom: 1px solid var(--line);
+    vertical-align: top;
+    transition: background 0.15s;
+  }
+  .data-row:hover td { background: rgba(255,255,255,0.02); }
+  .data-row td:first-child {
+    color: var(--muted);
+    font-size: 12px;
+    font-weight: 400;
+    width: 220px;
+    padding-left: 4px;
+    letter-spacing: 0.2px;
+  }
+  .data-row td:nth-child(2) {
+    background: rgba(79,163,247,0.03);
+    border-left: 2px solid rgba(79,163,247,0.1);
+    border-right: 1px solid var(--line);
+    font-size: 13px;
+    color: #ddd;
+  }
+  .data-row td:nth-child(3) {
+    background: rgba(255,61,0,0.03);
+    border-left: 1px solid var(--line);
+    border-right: 2px solid rgba(255,61,0,0.1);
+    font-size: 13px;
+    color: #ddd;
+  }
+
+  /* Winner highlight */
+  .win-ce5 td:nth-child(2) {
+    background: rgba(79,163,247,0.09) !important;
+    color: #c8e2ff !important;
+  }
+  .win-turbo td:nth-child(3) {
+    background: rgba(255,61,0,0.09) !important;
+    color: #ffd6cc !important;
+  }
+
+  /* Win tag */
+  .tag {
+    display: inline-block;
+    font-size: 9px;
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 2px 7px;
+    border-radius: 4px;
+    margin-left: 6px;
+    vertical-align: middle;
+  }
+  .tag-ce5 { background: rgba(79,163,247,0.18); color: var(--ce5); }
+  .tag-turbo { background: rgba(255,61,0,0.18); color: var(--turbo); }
+
+  /* Verdict box */
+  .verdict {
+    max-width: 880px;
+    margin: 40px auto 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+  .verdict-card {
+    border-radius: 12px;
+    padding: 22px 24px;
+  }
+  .verdict-card.ce5 {
+    background: rgba(79,163,247,0.06);
+    border: 1px solid rgba(79,163,247,0.2);
+  }
+  .verdict-card.turbo {
+    background: rgba(255,61,0,0.06);
+    border: 1px solid rgba(255,61,0,0.2);
+  }
+  .verdict-card h3 {
+    font-family: 'Syne', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+  .verdict-card.ce5 h3 { color: var(--ce5); }
+  .verdict-card.turbo h3 { color: var(--turbo); }
+  .verdict-card ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .verdict-card ul li {
+    font-size: 13px;
+    color: #ccc;
+    font-weight: 300;
+    padding-left: 14px;
+    position: relative;
+  }
+  .verdict-card ul li::before {
+    content: '›';
+    position: absolute;
+    left: 0;
+    font-weight: 700;
+  }
+  .verdict-card.ce5 ul li::before { color: var(--ce5); }
+  .verdict-card.turbo ul li::before { color: var(--turbo); }
+
+  .source-note {
+    max-width: 880px;
+    margin: 24px auto 0;
+    text-align: right;
+    font-size: 11px;
+    color: #444;
+    font-weight: 300;
+  }
+
+  @media (max-width: 640px) {
+    .phones-header { grid-template-columns: 100px 1fr 1fr; }
+    .data-row td:first-child { width: 100px; font-size: 11px; padding-left: 2px; }
+    .verdict { grid-template-columns: 1fr; }
+    body { padding: 24px 12px 48px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <span class="eyebrow">Smartphone Comparison · 2025 / 2026</span>
+  <h1>OnePlus Nord CE5 <span class="vs">VS</span> OnePlus Turbo 6V</h1>
+  <p class="sub">Side-by-side breakdown across every key specification</p>
+</div>
+
+<div class="phones-header">
+  <div></div>
+  <div class="phone-label ce5">
+    <div class="model-badge">Nord CE5 5G</div>
+    <h2>Nord CE5</h2>
+    <div class="price-tag">From ~₹24,999 · €273</div>
+  </div>
+  <div class="phone-label turbo">
+    <div class="model-badge">Turbo 6V 5G</div>
+    <h2>Turbo 6V</h2>
+    <div class="price-tag">From ~€230</div>
+  </div>
+</div>
+
+<table class="compare-table">
+
+  <!-- DESIGN & BUILD -->
+  <tr class="section-header"><td colspan="3">Design &amp; Build</td></tr>
+  <tr class="data-row">
+    <td>Dimensions</td>
+    <td>163.6 × 76.0 × 8.2 mm</td>
+    <td>162.5 × 77.5 × 8.5 mm</td>
+  </tr>
+  <tr class="data-row win-ce5">
+    <td>Weight</td>
+    <td>199 g <span class="tag tag-ce5">Lighter</span></td>
+    <td>215 g</td>
+  </tr>
+  <tr class="data-row win-turbo">
+    <td>Water Resistance</td>
+    <td>IP65 (splash proof)</td>
+    <td>IP68 / IP69K <span class="tag tag-turbo">Superior</span></td>
+  </tr>
+  <tr class="data-row">
+    <td>Screen Protection</td>
+    <td>Mohs Level 5</td>
+    <td>Crystal Shield Glass</td>
+  </tr>
+  <tr class="data-row">
+    <td>Colors</td>
+    <td>Marble Mist, Black Infinity, Nexus Blue</td>
+    <td>Black, White, Blue</td>
+  </tr>
+  <tr class="data-row">
+    <td>SIM</td>
+    <td>Dual Nano-SIM</td>
+    <td>Dual Nano-SIM</td>
+  </tr>
+
+  <!-- DISPLAY -->
+  <tr class="section-header"><td colspan="3">Display</td></tr>
+  <tr class="data-row">
+    <td>Panel Type</td>
+    <td>Fluid AMOLED</td>
+    <td>AMOLED</td>
+  </tr>
+  <tr class="data-row">
+    <td>Screen Size</td>
+    <td>6.77 inches</td>
+    <td>6.78 inches</td>
+  </tr>
+  <tr class="data-row win-turbo">
+    <td>Resolution</td>
+    <td>1080 × 2392 px · 387 ppi</td>
+    <td>1272 × 2772 px · 450 ppi <span class="tag tag-turbo">Sharper</span></td>
+  </tr>
+  <tr class="data-row win-turbo">
+    <td>Refresh Rate</td>
+    <td>120 Hz</td>
+    <td>144 Hz <span class="tag tag-turbo">Smoother</span></td>
+  </tr>
+  <tr class="data-row win-turbo">
+    <td>Peak Brightness</td>
+    <td>1,430 nits</td>
+    <td>1,800 nits <span class="tag tag-turbo">Brighter</span></td>
+  </tr>
+  <tr class="data-row win-turbo">
+    <td>PWM Dimming</td>
+    <td>Standard</td>
+    <td>3,840 Hz <span class="tag tag-turbo">Eye-friendly</span></td>
+  </tr>
+  <tr class="data-row win-ce5">
+    <td>HDR Support</td>
+    <td>HDR10+ <span class="tag tag-ce5">✓</span></td>
+    <td>–</td>
+  </tr>
+  <tr class="data-row">
+    <td>Screen-to-Body</td>
+    <td>89.7%</td>
+    <td>89.3%</td>
+  </tr>
+
+  <!-- PROCESSOR -->
+  <tr class="section-header"><td colspan="3">Processor</td></tr>
+  <tr class="data-row">
+    <td>Chipset</td>
+    <td>MediaTek Dimensity 8350 Apex</td>
+    <td>Qualcomm Snapdragon 7s Gen 4</td>
+  </tr>
+  <tr class="data-row">
+    <td>Process Node</td>
+    <td>4 nm</td>
+    <td>4 nm</td>
+  </tr>
+  <tr class="data-row win-ce5">
+    <td>CPU Speed</td>
+    <td>1× 3.35 GHz + 3× 3.20 GHz + 4× 2.20 GHz <span class="tag tag-ce5">Faster cores</span></td>
+    <td>1× 2.7 GHz + 3× 2.4 GHz + 4× 1.8 GHz</td>
+  </tr>
+  <tr class="data-row">
+    <td>GPU</td>
+    <td>Mali G615-MC6</td>
+    <td>Adreno 810</td>
+  </tr>
+
+  <!-- RAM & STORAGE -->
+  <tr class="section-header"><td colspan="3">RAM &amp; Storage</td></tr>
+  <tr class="data-row">
+    <td>RAM Options</td>
+    <td>8 GB / 12 GB</td>
+    <td>8 GB / 12 GB</td>
+  </tr>
+  <tr class="data-row">
+    <td>RAM Type</td>
+    <td>LPDDR5X</td>
+    <td>LPDDR5X</td>
+  </tr>
+  <tr class="data-row win-turbo">
+    <td>Storage Options</td>
+    <td>128 GB / 256 GB</td>
+    <td>256 GB / 512 GB <span class="tag tag-turbo">More</span></td>
+  </tr>
+  <tr class="data-row">
+    <td>Storage Type</td>
+    <td>UFS 3.1</td>
+    <td>UFS 3.1</td>
+  </tr>
+  <tr class="data-row win-ce5">
+    <td>Expandable Storage</td>
+    <td>microSDXC (up to 1 TB) <span class="tag tag-ce5">✓</span></td>
+    <td>None</td>
+  </tr>
+
+  <!-- CAMERAS -->
+  <tr class="section-header"><td colspan="3">Camera System</td></tr>
+  <tr class="data-row">
+    <td>Main Camera</td>
+    <td>50 MP, f/1.8, OIS, PDAF (Sony LYT-600)</td>
+    <td>50 MP, f/1.9, OIS, PDAF</td>
+  </tr>
+  <tr class="data-row win-ce5">
+    <td>Secondary Camera</td>
+    <td>8 MP Ultra-wide <span class="tag tag-ce5">More Useful</span></td>
+    <td>2 MP Monochrome</td>
+  </tr>
+  <tr class="data-row">
+    <td>Front Camera</td>
+    <td>16 MP, f/2.4 (Sony IMX480)</td>
+    <td>16 MP, f/2.4</td>
+  </tr>
+  <tr class="data-row win-ce5">
+    <td>Video Recording</td>
+    <td>4K@30/60fps, 1080p up to 480fps slo-mo <span class="tag tag-ce5">Better slomo</span></td>
+    <td>4K@30/60fps, 1080p up to 120fps</td>
+  </tr>
+
+  <!-- BATTERY -->
+  <tr class="section-header"><td colspan="3">Battery &amp; Charging</td></tr>
+  <tr class="data-row win-turbo">
+    <td>Battery Capacity</td>
+    <td>7,100 mAh (India) / 5,200 mAh (Global)</td>
+    <td>9,000 mAh Si/C <span class="tag tag-turbo">Massive</span></td>
+  </tr>
+  <tr class="data-row">
+    <td>Wired Charging</td>
+    <td>80W SUPERVOOC</td>
+    <td>80W (UFCS / PPS supported)</td>
+  </tr>
+  <tr class="data-row win-turbo">
+    <td>Reverse Charging</td>
+    <td>Yes</td>
+    <td>Yes, 27W <span class="tag tag-turbo">Faster</span></td>
+  </tr>
+  <tr class="data-row">
+    <td>USB Port</td>
+    <td>USB Type-C 2.0</td>
+    <td>USB Type-C 2.0</td>
+  </tr>
+
+  <!-- SOFTWARE -->
+  <tr class="section-header"><td colspan="3">Software</td></tr>
+  <tr class="data-row">
+    <td>Android Version</td>
+    <td>Android 15</td>
+    <td>Android 16</td>
+  </tr>
+  <tr class="data-row">
+    <td>UI Skin</td>
+    <td>OxygenOS 15</td>
+    <td>ColorOS 16</td>
+  </tr>
+
+  <!-- CONNECTIVITY -->
+  <tr class="section-header"><td colspan="3">Connectivity</td></tr>
+  <tr class="data-row">
+    <td>5G</td>
+    <td>SA / NSA</td>
+    <td>SA / NSA</td>
+  </tr>
+  <tr class="data-row">
+    <td>Wi-Fi</td>
+    <td>Wi-Fi 6 (802.11 a/b/g/n/ac/ax)</td>
+    <td>Wi-Fi 6 (802.11 a/b/g/n/ac/ax)</td>
+  </tr>
+  <tr class="data-row win-turbo">
+    <td>Bluetooth</td>
+    <td>5.4, aptX HD, LHDC 5</td>
+    <td>5.4, aptX HD, aptX Adaptive, LHDC 5 <span class="tag tag-turbo">aptX Adaptive</span></td>
+  </tr>
+  <tr class="data-row">
+    <td>NFC</td>
+    <td>Yes</td>
+    <td>Yes</td>
+  </tr>
+  <tr class="data-row">
+    <td>IR Blaster</td>
+    <td>Yes</td>
+    <td>Yes</td>
+  </tr>
+  <tr class="data-row">
+    <td>3.5mm Jack</td>
+    <td>No</td>
+    <td>No</td>
+  </tr>
+  <tr class="data-row win-turbo">
+    <td>Stereo Speakers</td>
+    <td>Mono speaker</td>
+    <td>Stereo speakers <span class="tag tag-turbo">Better audio</span></td>
+  </tr>
+
+  <tr class="data-row win-ce5">
+    <td>GPS</td>
+    <td>GPS, A-GPS, GLONASS, Galileo, BeiDou, QZSS (multi-band) <span class="tag tag-ce5">More accurate</span></td>
+    <td>GPS, GLONASS, Galileo, BeiDou, QZSS (single-band)</td>
+  </tr>
+
+  <!-- AI FEATURES -->
+  <tr class="section-header"><td colspan="3">AI Features</td></tr>
+  <tr class="data-row win-ce5">
+    <td>AI Capabilities</td>
+    <td>AI Eraser, AI Perfect Shot, AI Reflection Remover, AI Reframe, Google Gemini, AI VoiceScribe, AI Translation, AI Call Assistant <span class="tag tag-ce5">More features</span></td>
+    <td>–</td>
+  </tr>
+  <tr class="section-header"><td colspan="3">Sensors &amp; Biometrics</td></tr>
+  <tr class="data-row">
+    <td>Fingerprint</td>
+    <td>Under-display (Optical)</td>
+    <td>Under-display (Optical)</td>
+  </tr>
+  <tr class="data-row">
+    <td>Face Unlock</td>
+    <td>Yes</td>
+    <td>Yes</td>
+  </tr>
+  <tr class="data-row">
+    <td>Sensors</td>
+    <td>Accelerometer, Gyro, Proximity, Compass</td>
+    <td>Accelerometer, Gyro, Proximity, Compass</td>
+  </tr>
+
+</table>
+
+<!-- Verdict -->
+<div class="verdict">
+  <div class="verdict-card ce5">
+    <h3>Nord CE5 5G — Best For</h3>
+    <ul>
+      <li>Budget-conscious buyers wanting more camera versatility (ultrawide lens)</li>
+      <li>Expandable storage via microSD (up to 1 TB)</li>
+      <li>Rich AI suite: Gemini, AI Eraser, AI VoiceScribe &amp; more</li>
+      <li>Better slow-motion video (480fps)</li>
+      <li>Lighter, slimmer design at 199g</li>
+      <li>More accurate multi-band GPS</li>
+    </ul>
+  </div>
+  <div class="verdict-card turbo">
+    <h3>Turbo 6V 5G — Best For</h3>
+    <ul>
+      <li>Power users who want the biggest battery (9,000 mAh)</li>
+      <li>Latest Android 16 with ColorOS 16</li>
+      <li>Sharper, smoother 1272p / 144Hz display, 1,800 nits</li>
+      <li>Superior water resistance (IP68) &amp; 27W reverse charging</li>
+      <li>Stereo speakers for better media audio</li>
+      <li>Higher storage ceiling (512 GB option)</li>
+    </ul>
+  </div>
+</div>
+
+<p class="source-note">Sources: GSMArena, MobileMaya · Data current as of March 2026</p>
+
+</body>
+</html>
